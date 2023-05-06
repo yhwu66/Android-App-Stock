@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_shape"
+    android:backgroundTint="@color/white">
+
+    <TextView
+        android:id="@+id/dialog_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dialog_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="-15dp"
+        android:text="TextView"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_source" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="320dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="90dp"
+        android:background="@color/header"
+        android:backgroundTint="@color/header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dialog_headline"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dialog_summary"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_headline" />
+
+    <ImageView
+        android:id="@+id/chromeImg"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_summary"
+        app:srcCompat="@mipmap/ic_chrome_foreground" />
+
+    <ImageView
+        android:id="@+id/twitterImg"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="60dp"
+        app:layout_constraintStart_toEndOf="@+id/chromeImg"
+        app:layout_constraintTop_toTopOf="@+id/chromeImg"
+        app:srcCompat="@mipmap/ic_twitter_240_foreground" />
+
+    <ImageView
+        android:id="@+id/facebookImg"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="60dp"
+        app:layout_constraintStart_toEndOf="@+id/twitterImg"
+        app:layout_constraintTop_toTopOf="@+id/twitterImg"
+        app:srcCompat="@mipmap/ic_facebook_foreground" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

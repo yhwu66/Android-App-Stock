@@ -1,0 +1,31 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="fill_parent"
+android:background="@drawable/dialog_shape">
+
+<TextView
+    android:id="@+id/textDialog"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentEnd="true"
+    android:layout_marginStart="20dp"
+    android:layout_marginLeft="11dp"
+    android:layout_marginTop="60dp"
+    android:layout_marginEnd="20dp"
+    android:textColor="#FFF" />
+
+<Button
+    android:id="@+id/declineButton"
+    android:layout_width="100px"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/textDialog"
+    android:layout_marginLeft="75dp"
+    android:layout_marginTop="56dp"
+    android:layout_marginRight="5dp"
+
+    android:text=" Submit " />
+
+</RelativeLayout>

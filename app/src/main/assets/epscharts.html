@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get</title>
+</head>
+
+<body>
+<div id="container"></div>
+<div id="c"></div>
+</body>
+
+<script>
+
+    function setTicker(jString, ticker) {
+        jString = "[{\"actual\":1.52,\"estimate\":1.4566,\"period\":\"2022-06-30\",\"surprise\":0.0634,\"surprisePercent\":4.3526,\"symbol\":\"AAPL\"},{\"actual\":2.1,\"estimate\":1.9268,\"period\":\"2022-03-31\",\"surprise\":0.1732,\"surprisePercent\":8.989,\"symbol\":\"AAPL\"},{\"actual\":1.24,\"estimate\":1.261,\"period\":\"2021-12-31\",\"surprise\":-0.021,\"surprisePercent\":-1.6653,\"symbol\":\"AAPL\"},{\"actual\":1.3,\"estimate\":1.0269,\"period\":\"2021-09-30\",\"surprise\":0.2731,\"surprisePercent\":26.5946,\"symbol\":\"AAPL\"}]";
+
+        class MyLabel {
+            constructor(date, surprice) {
+                this.date = date;
+                this.surprice = surprice;
+            }
+        }
+
+
+
+        obj = JSON.parse(jString);
+        var xCate = [];
+        var seriedataAc = [];
+        var seriedataEs = [];
+        var datalength = obj.length;
+        for (var i = 0; i < datalength; i++) {
+            var tmpsur = obj[i].actual - obj[i].estimate;
+            tmpsur = Math.round(tmpsur * 100) / 100
+            var tmp = new MyLabel(obj[i].period, tmpsur)
+            xCate.push(tmp);
+            //xCate.push(obj[i].period);
+            seriedataAc.push(obj[i].actual);
+            seriedataEs.push(obj[i].estimate);
+        }
+        obj = JSON.parse(jString);
+
+
+        i = "dhjds"
+        //var recomcata = ["1", "2", "3", "4", "5"]
+        Highcharts.chart('container', {
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: 'Historical EPS Surprises'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: xCate,
+                reversed: false,
+                title: {
+                    //enabled: true,
+                    //text: 'Altitude'
+                },
+                labels: {
+                    format: '{value.date}<br/>Surprice: {value.surprice}',
+                    rotation: -30,
+
+                },
+                accessibility: {
+                    //rangeDescription: 'Range: 0 to 80 km.'
+                },
+            },
+            yAxis: {
+
+                title: {
+                    text: 'Quarterly EPS'
+                },
+                labels: {
+                    format: '{value}'
+                },
+
+            },
+            legend: {
+                align: 'center',
+                x: 0,
+                verticalAlign: 'bottom',
+                y: 0,
+                floating: false,
+                backgroundColor: 'white',
+
+                shadow: false
+            },
+            tooltip: {
+                shared: true,
+                headerFormat: '{point.x.date}<br/>Surprice: {point.x.surprice}<br>',
+                //pointFormat: '<span>{series.name}: </span><b>{point.y}</b><br/>'
+            },
+
+            plotOptions: {
+                spline: {
+
+                }
+            },
+            series: [{
+                name: 'Actual',
+                type: 'spline',
+                data: seriedataAc,
+                marker: {
+                    fillColor: null,
+                    lineWidth: 1,
+                    lineColor: '#2A37FF' // inherit from series
+                }
+
+            }, {
+                name: 'Estimate',
+                type: 'spline',
+                data: seriedataEs,
+                marker: {
+                    fillColor: null,
+                    lineWidth: 1,
+                    lineColor: '#2A37FF' // inherit from series
+                }
+            }]
+        });
+    }
+    setTicker();
+</script>
+
+
+
+
+</html>

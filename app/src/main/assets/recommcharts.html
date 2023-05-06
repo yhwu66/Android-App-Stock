@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/volume-by-price.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get</title>
+</head>
+
+<body>
+<div id="container" style="height: 300px; min-width: 310px"></div>
+<div id="c"></div>
+</body>
+
+<script>
+    //jString = "[{\"buy\":26,\"hold\":8,\"period\":\"2022-04-01\",\"sell\":0,\"strongBuy\":18,\"strongSell\":0,\"symbol\":\"AAPL\"},{\"buy\":26,\"hold\":8,\"period\":\"2022-03-01\",\"sell\":0,\"strongBuy\":18,\"strongSell\":0,\"symbol\":\"AAPL\"},{\"buy\":26,\"hold\":8,\"period\":\"2022-02-01\",\"sell\":0,\"strongBuy\":17,\"strongSell\":0,\"symbol\":\"AAPL\"},{\"buy\":25,\"hold\":7,\"period\":\"2022-01-01\",\"sell\":0,\"strongBuy\":17,\"strongSell\":0,\"symbol\":\"AAPL\"}]";
+    //obj = JSON.parse(jString);
+
+    function setTicker(jString,ticker) {
+    //jString = "[{\"buy\":26,\"hold\":8,\"period\":\"2022-04-01\",\"sell\":0,\"strongBuy\":18,\"strongSell\":0,\"symbol\":\"AAPL\"},{\"buy\":26,\"hold\":8,\"period\":\"2022-03-01\",\"sell\":0,\"strongBuy\":18,\"strongSell\":0,\"symbol\":\"AAPL\"},{\"buy\":26,\"hold\":8,\"period\":\"2022-02-01\",\"sell\":0,\"strongBuy\":17,\"strongSell\":0,\"symbol\":\"AAPL\"},{\"buy\":25,\"hold\":7,\"period\":\"2022-01-01\",\"sell\":0,\"strongBuy\":17,\"strongSell\":0,\"symbol\":\"AAPL\"}]";
+
+        obj = JSON.parse(jString);
+        datalength = obj.length;
+        var recomcata = [];
+        var buy = [];
+        var sell = [];
+        var hold = [];
+        var StrongBuy = [];
+        var StrongSell = [];
+        for (var i = 0; i < datalength; i++) {
+            recomcata.push(obj[i].period);
+            buy.push(obj[i].buy);
+            sell.push(obj[i].sell);
+            hold.push(obj[i].hold);
+            StrongBuy.push(obj[i].strongBuy);
+            StrongSell.push(obj[i].strongSell);
+        }
+
+        //var recomcata = ["1", "2", "3", "4", "5"]
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Recommendation Trends'
+            },
+            xAxis: {
+                categories: recomcata
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Analysis'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'center',
+                x: 5,
+                verticalAlign: 'bottom',
+                y: 0,
+                floating: false,
+                backgroundColor: 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                headerFormat: '<b>{point.x}</b><br/>',
+                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: false
+                    }
+                }
+            },
+            series: [
+                {
+                    name: 'StrongBuy',
+                    type: 'column',
+                    data: StrongBuy,
+                    color: '#007130'
+                },
+                {
+                    name: 'buy',
+                    type: 'column',
+                    data: buy,
+                    color: '#00BC45'
+                }, {
+                    name: 'hold',
+                    type: 'column',
+                    data: hold,
+                    color: '#C18900'
+                },{
+                    name: 'sell',
+                    type: 'column',
+                    data: sell,
+                    color:'#FF4B54'
+                },  {
+                    name: 'StrongSell',
+                    type: 'column',
+                    data: StrongSell,
+                    color:'#8C2A2E'
+                }]
+        });
+    }
+    //setTicker();
+</script>
+
+
+
+
+</html>
